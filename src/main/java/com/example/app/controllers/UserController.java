@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +43,11 @@ public class UserController {
     @GetMapping("/findUser/{id}")
     public Optional<User> findUser(@PathVariable String id) {
         return userRepository.findById(id);
+    }
+
+    @GetMapping("/listpage")
+    public Page<User> listUsersPaginated(Pageable p) {
+        return userRepository.findAll(p);
     }
 
 }
