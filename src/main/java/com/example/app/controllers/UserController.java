@@ -45,6 +45,7 @@ public class UserController {
         return userRepository.findById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/listpage")
     public Page<User> listUsersPaginated(Pageable p) {
         return userRepository.findAll(p);
